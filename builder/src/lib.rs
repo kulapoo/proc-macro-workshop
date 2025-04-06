@@ -48,14 +48,10 @@ pub fn derive(input: TokenStream) -> TokenStream {
 
         let field_checks = fields.iter().map(|field| {
             let field_name = &field.ident;
-
             quote! {
-
-
                 let #field_name = self.#field_name.take().ok_or_else(||
                     format!("{} is not set", stringify!(#field_name)))?;
             }
-
         });
 
         let field_inits = fields.iter().map(|field| {
